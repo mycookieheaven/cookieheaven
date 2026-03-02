@@ -5,9 +5,18 @@ function App() {
   const [showModal, setShowModal] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
   const [walletConnected, setWalletConnected] = useState(false)
+  
+  // Cookie Match Game State
+  const [gameCards, setGameCards] = useState([])
+  const [flippedCards, setFlippedCards] = useState([])
+  const [matchedCards, setMatchedCards] = useState([])
+  const [moves, setMoves] = useState(0)
+  const [gameWon, setGameWon] = useState(false)
 
+  // Floating emojis
   useEffect(() => {
     const container = document.getElementById('floatingCookies')
+    if (!container) return
     const bgEmojis = ['🍪', '💖']
     
     for (let i = 0; i < 15; i++) {
@@ -21,13 +30,84 @@ function App() {
     }
   }, [])
 
+  // Glitter background
+  useEffect(() => {
+    const container = document.getElementById('glitterBg')
+    if (!container) return
+    
+    const colors = ['#ff69b4', '#ff1493', '#ffc0cb', '#ffb6c1', '#ffffff']
+    
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div')
+      particle.className = 'glitter-particle'
+      particle.style.left = Math.random() * 100 + '%'
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)]
+      particle.style.animationDelay = Math.random() * 10 + 's'
+      particle.style.animationDuration = (5 + Math.random() * 10) + 's'
+      particle.style.width = (5 + Math.random() * 10) + 'px'
+      particle.style.height = particle.style.width
+      container.appendChild(particle)
+    }
+  }, [])
+
+  // Cookie Match Game
+  const gameEmojis = ['🍪', '💖', '🍩', '🧁', '🎂', '🍰', '🥛', '🍫']
+  
+  const shuffleArray = (array) => {
+    const shuffled = [...array]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+    return shuffled
+  }
+
+  const startGame = () => {
+    const selectedEmojis = gameEmojis.slice(0, 8)
+    const cards = shuffleArray([...selectedEmojis, ...selectedEmojis])
+    setGameCards(cards)
+    setFlippedCards([])
+    setMatchedCards([])
+    setMoves(0)
+    setGameWon(false)
+  }
+
+  useEffect(() => {
+    startGame()
+  }, [])
+
+  const handleCardClick = (index) => {
+    if (flippedCards.length === 2 || matchedCards.includes(index) || flippedCards.includes(index)) {
+      return
+    }
+
+    const newFlipped = [...flippedCards, index]
+    setFlippedCards(newFlipped)
+
+    if (newFlipped.length === 2) {
+      setMoves(m => m + 1)
+      const [first, second] = newFlipped
+      if (gameCards[first] === gameCards[second]) {
+        setMatchedCards(prev => [...prev, first, second])
+        setFlippedCards([])
+        if (matchedCards.length + 2 === gameCards.length) {
+          setGameWon(true)
+        }
+      } else {
+        setTimeout(() => setFlippedCards([]), 1000)
+      }
+    }
+  }
+
   const cookies = [
     { id: 1, name: 'Classic Choco Chip', rarity: 'common', image: '/cookie-choco.png', traits: 'Chocolate • Chips • Pixel Art' },
-    { id: 2, name: 'Strawberry Kiss', rarity: 'uncommon', class: 'cookie-pink', traits: 'Pink • Sprinkles • Heart' },
-    { id: 3, name: 'Golden Glory', rarity: 'rare', class: 'cookie-golden', traits: 'Gold • Stars • Shiny' },
-    { id: 4, name: 'Rainbow Dream', rarity: 'epic', class: 'cookie-rainbow', traits: 'Rainbow • Multi • Glow' },
-    { id: 5, name: 'Cosmic Cookie', rarity: 'legendary', class: 'cookie-cosmic', traits: 'Galaxy • Stars • Rare' },
-    { id: 6, name: 'Oatmeal Delight', rarity: 'common', class: 'cookie-oatmeal', traits: 'Tan • Raisins • Classic' },
+    { id: 2, name: 'Strawberry Kiss', rarity: 'uncommon', image: '/cookie2.png', traits: 'Pink • Sprinkles • Heart' },
+    { id: 3, name: 'Golden Glory', rarity: 'rare', image: '/cookie2.png', traits: 'Gold • Stars • Shiny' },
+    { id: 4, name: 'Rainbow Dream', rarity: 'epic', image: '/cookie2.png', traits: 'Rainbow • Multi • Glow' },
+    { id: 5, name: 'Cosmic Cookie', rarity: 'legendary', image: '/cookie2.png', traits: 'Galaxy • Stars • Rare' },
+    { id: 6, name: 'Oatmeal Delight', rarity: 'common', image: '/cookie2.png', traits: 'Tan • Raisins • Classic' },
+    { id: 7, name: 'Mint Chocolate', rarity: 'uncommon', image: '/cookie2.png', traits: 'Mint • Chocolate • Fresh' },
+    { id: 8, name: 'Red Velvet', rarity: 'rare', image: '/cookie2.png', traits: 'Red • Cream Cheese • Classic' },
   ]
 
   const filteredCookies = activeFilter === 'all' ? cookies : cookies.filter(c => c.rarity === activeFilter)
@@ -42,14 +122,19 @@ function App() {
         console.error('Error:', error)
       }
     } else {
-      alert('Please install MetaMask!')
+      alert('Please install a Solana wallet!')
     }
   }
 
   return (
     <>
+      {/* Glitter Background */}
+      <div className="glitter-bg" id="glitterBg"></div>
+      
+      {/* Floating Cookies */}
       <div className="floating-cookies" id="floatingCookies"></div>
 
+      {/* Navbar */}
       <nav className="navbar">
         <div className="logo">
           <img src="/cookie2.png" alt="Cookie" style={{width:'35px'}} />
@@ -58,11 +143,13 @@ function App() {
         <div className="nav-links">
           <a href="#about">About</a>
           <a href="#collection">Cookies</a>
+          <a href="#game">Play</a>
           <a href="#roadmap">Roadmap</a>
           <a href="#mint" className="btn-nav">Mint Soon</a>
         </div>
       </nav>
 
+      {/* Hero */}
       <header className="hero">
         <div className="hero-badge">✨ Coming Soon to Solana ✨</div>
         <h1>COOKIE HEAVEN</h1>
@@ -93,6 +180,7 @@ function App() {
         </div>
       </header>
 
+      {/* About */}
       <section id="about" className="section about-section">
         <div className="section-header">
           <h2>💕 About CookieHeaven</h2>
@@ -121,6 +209,7 @@ function App() {
         </div>
       </section>
 
+      {/* Collection */}
       <section id="collection" className="section collection-section">
         <div className="section-header">
           <h2>🍪 Cookie Collection</h2>
@@ -142,8 +231,8 @@ function App() {
         <div className="cookie-grid">
           {filteredCookies.map(cookie => (
             <div key={cookie.id} className="cookie-card">
-              <div className={`cookie-image ${cookie.class || ''}`}>
-                {cookie.image && <img src={cookie.image} alt={cookie.name} />}
+              <div className="cookie-image">
+                <img src={cookie.image} alt={cookie.name} />
               </div>
               <div className="cookie-info">
                 <h4>{cookie.name}</h4>
@@ -155,6 +244,36 @@ function App() {
         </div>
       </section>
 
+      {/* Cookie Match Game */}
+      <section id="game" className="game-section">
+        <div className="game-container">
+          <h2 className="game-title">🎮 Cookie Match Game</h2>
+          <p>Match the cookies to win!</p>
+          
+          <div className="game-board">
+            {gameCards.map((emoji, index) => (
+              <div
+                key={index}
+                className={`game-card ${flippedCards.includes(index) ? 'flipped' : ''} ${matchedCards.includes(index) ? 'matched' : ''}`}
+                onClick={() => handleCardClick(index)}
+              >
+                {flippedCards.includes(index) || matchedCards.includes(index) ? emoji : '🍪'}
+              </div>
+            ))}
+          </div>
+          
+          <div className="game-stats">
+            <span>Moves: {moves}</span>
+            <span>Pairs: {matchedCards.length / 2} / 8</span>
+          </div>
+          
+          {gameWon && <h3 style={{color: '#4ade80', marginTop: '1rem'}}>🎉 You Won! 🎉</h3>}
+          
+          <button className="game-btn" onClick={startGame}>🔄 New Game</button>
+        </div>
+      </section>
+
+      {/* Roadmap */}
       <section id="roadmap" className="section roadmap-section">
         <div className="section-header">
           <h2>🗺️ Our Journey</h2>
@@ -203,6 +322,7 @@ function App() {
         </div>
       </section>
 
+      {/* Mint */}
       <section id="mint" className="section mint-section">
         <div className="mint-container">
           <h2>🍪 Mint Your Cookie</h2>
@@ -235,6 +355,7 @@ function App() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer>
         <div className="footer-content">
           <div className="footer-logo">🍪 CookieHeaven</div>
@@ -242,6 +363,7 @@ function App() {
           <div className="footer-links">
             <a href="#about">About</a>
             <a href="#collection">Collection</a>
+            <a href="#game">Play</a>
             <a href="#roadmap">Roadmap</a>
             <a href="#mint">Mint</a>
           </div>
@@ -249,6 +371,7 @@ function App() {
         </div>
       </footer>
 
+      {/* Modal */}
       {showModal && (
         <div className="modal show" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
