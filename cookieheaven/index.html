@@ -7,143 +7,299 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Floating Cookies Background -->
+    <div class="floating-cookies" id="floatingCookies"></div>
+    
+    <!-- Cursor Trail -->
+    <div class="cursor-trail" id="cursorTrail"></div>
+
     <nav class="navbar">
-        <div class="logo">🍪 CookieHeaven</div>
+        <div class="logo">
+            <span class="cookie-icon">🍪</span> CookieHeaven
+        </div>
         <div class="nav-links">
             <a href="#about">About</a>
-            <a href="#collection">Collection</a>
+            <a href="#collection">Cookies</a>
             <a href="#roadmap">Roadmap</a>
-            <a href="#mint" class="btn-nav">Mint</a>
+            <a href="#mint" class="btn-nav">Mint Soon</a>
         </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#collection">Cookies</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#mint">Mint</a>
+    </div>
 
     <header class="hero">
         <div class="hero-content">
+            <div class="hero-badge">✨ Coming Soon to Polygon ✨</div>
             <h1 class="glitch" data-text="COOKIE HEAVEN">COOKIE HEAVEN</h1>
-            <p class="tagline">1000 Unique Pixel Cookies Coming to Polygon</p>
+            <p class="tagline">A deliciously cute collection of 1,000 unique pixel cookies</p>
             <div class="hero-buttons">
-                <a href="#mint" class="btn btn-primary">View Collection</a>
-                <a href="#about" class="btn btn-secondary">Learn More</a>
+                <a href="#collection" class="btn btn-primary">
+                    <span>🍪</span> See the Cookies
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <span>💕</span> Our Story
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-num">1,000</span>
+                    <span class="stat-text">Unique Cookies</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-num">Free</span>
+                    <span class="stat-text">Mint Cost</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-num">Polygon</span>
+                    <span class="stat-text">Blockchain</span>
+                </div>
             </div>
         </div>
         <div class="hero-cookie">
-            <div class="pixel-cookie"></div>
+            <div class="bouncing-cookie">
+                <div class="cookie-body">
+                    <div class="chocolate-chips"></div>
+                    <div class="cookie-shine"></div>
+                </div>
+                <div class="cookie-shadow"></div>
+            </div>
+            <div class="floating-elements">
+                <span class="float-item">✨</span>
+                <span class="float-item">💫</span>
+                <span class="float-item">⭐</span>
+            </div>
         </div>
     </header>
 
-    <section id="about" class="section">
-        <h2>About CookieHeaven</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>Welcome to <strong>CookieHeaven</strong> — a delicious collection of 1000 unique pixel art cookies living on the Polygon blockchain.</p>
-                <p>Each cookie is one-of-a-kind, with varying colors, toppings, shapes, and rarities. Some are plain, some are legendary!</p>
-                <p>Join our community of cookie enthusiasts and get ready to mint your very own digital cookie.</p>
+    <section id="about" class="section about-section">
+        <div class="section-header">
+            <h2>💕 About CookieHeaven</h2>
+            <p class="section-subtitle">Made with love for cookie lovers everywhere</p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-card story-card">
+                <div class="card-emoji">🌟</div>
+                <h3>The Sweet Story</h3>
+                <p>CookieHeaven was born from one simple thing — my absolute <strong>love for cookies</strong>. There's something magical about biting into a warm, chewy cookie with chocolate chips melting in your mouth. It's pure happiness in every bite.</p>
+                <p>I wanted to capture that joy and spread it to the world through cute pixel art cookies that live forever on the blockchain. Each cookie is unique, just like the memories we make sharing cookies with the people we love. 💕</p>
+                <p class="signature">With love, <strong>Melissa</strong> 🧡</p>
             </div>
-            <div class="about-stats">
-                <div class="stat">
-                    <span class="stat-number">1000</span>
-                    <span class="stat-label">Total Cookies</span>
+            
+            <div class="about-card creator-card">
+                <div class="card-emoji">🎨</div>
+                <h3>Created by Melissa</h3>
+                <p>Hey! I'm Melissa, and I created CookieHeaven because I believe the world needs more sweetness. This is my first NFT project, made with lots of coffee ☕ and cookie breaks 🍪</p>
+                <p>I'm excited to share this journey with you all! Each cookie design was handcrafted with love, and I hope they bring a little joy to whoever owns them.</p>
+                <div class="creator-badges">
+                    <span class="badge">🌸 First Project</span>
+                    <span class="badge">💖 Made with Love</span>
+                    <span class="badge">🎮 Pixel Art</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-number">Free</span>
-                    <span class="stat-label">Mint Cost</span>
+            </div>
+            
+            <div class="about-card what-card">
+                <div class="card-emoji">🎁</div>
+                <h3>What's Inside?</h3>
+                <p>Each CookieHeaven NFT is a one-of-a-kind pixel cookie with randomized:</p>
+                <ul class="features-list">
+                    <li>🍫 Chocolate chips & toppings</li>
+                    <li>🌈 Different colors & flavors</li>
+                    <li>⭐ Rarity levels (common to legendary!)</li>
+                    <li>💎 Special hidden traits</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="collection" class="section collection-section">
+        <div class="section-header">
+            <h2>🍪 Cookie Collection</h2>
+            <p class="section-subtitle">Sneak peek at some of our delicious pixel creations</p>
+        </div>
+        
+        <div class="rarity-filter">
+            <button class="rarity-btn active" data-rarity="all">All Cookies</button>
+            <button class="rarity-btn" data-rarity="common">Common</button>
+            <button class="rarity-btn" data-rarity="uncommon">Uncommon</button>
+            <button class="rarity-btn" data-rarity="rare">Rare</button>
+            <button class="rarity-btn" data-rarity="epic">Epic</button>
+            <button class="rarity-btn" data-rarity="legendary">Legendary</button>
+        </div>
+        
+        <div class="cookie-grid" id="cookieGrid">
+            <div class="cookie-card" data-rarity="common">
+                <div class="cookie-image cookie-basic"></div>
+                <div class="cookie-info">
+                    <h4>Classic Choco</h4>
+                    <span class="rarity common">Common</span>
+                    <p class="traits">Brown • Chips • Round</p>
                 </div>
-                <div class="stat">
-                    <span class="stat-number">Polygon</span>
-                    <span class="stat-label">Network</span>
+            </div>
+            <div class="cookie-card" data-rarity="uncommon">
+                <div class="cookie-image cookie-pink"></div>
+                <div class="cookie-info">
+                    <h4>Strawberry Kiss</h4>
+                    <span class="rarity uncommon">Uncommon</span>
+                    <p class="traits">Pink • Sprinkles • Heart</p>
+                </div>
+            </div>
+            <div class="cookie-card" data-rarity="rare">
+                <div class="cookie-image cookie-golden"></div>
+                <div class="cookie-info">
+                    <h4>Golden Glory</h4>
+                    <span class="rarity rare">Rare</span>
+                    <p class="traits">Gold • Stars • Shiny</p>
+                </div>
+            </div>
+            <div class="cookie-card" data-rarity="epic">
+                <div class="cookie-image cookie-rainbow"></div>
+                <div class="cookie-info">
+                    <h4>Rainbow Dream</h4>
+                    <span class="rarity epic">Epic</span>
+                    <p class="traits">Rainbow • Multi • Glow</p>
+                </div>
+            </div>
+            <div class="cookie-card" data-rarity="legendary">
+                <div class="cookie-image cookie-cosmic"></div>
+                <div class="cookie-info">
+                    <h4>Cosmic Cookie</h4>
+                    <span class="rarity legendary">Legendary ✨</span>
+                    <p class="traits">Galaxy • Stars • Rare</p>
+                </div>
+            </div>
+            <div class="cookie-card" data-rarity="common">
+                <div class="cookie-image cookie-oatmeal"></div>
+                <div class="cookie-info">
+                    <h4>Oatmeal Delight</h4>
+                    <span class="rarity common">Common</span>
+                    <p class="traits">Tan • Raisins • Classic</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="collection" class="section">
-        <h2>Preview Collection</h2>
-        <p class="section-subtitle">Sneak peek at some of our pixel cookies</p>
-        <div class="cookie-grid">
-            <div class="cookie-card">
-                <div class="cookie-preview cookie-1"></div>
-                <p class="cookie-name">Classic Choco</p>
-                <span class="rarity common">Common</span>
-            </div>
-            <div class="cookie-card">
-                <div class="cookie-preview cookie-2"></div>
-                <p class="cookie-name">Strawberry Dream</p>
-                <span class="rarity uncommon">Uncommon</span>
-            </div>
-            <div class="cookie-card">
-                <div class="cookie-preview cookie-3"></div>
-                <p class="cookie-name">Golden Sprinkle</p>
-                <span class="rarity rare">Rare</span>
-            </div>
-            <div class="cookie-card">
-                <div class="cookie-preview cookie-4"></div>
-                <p class="cookie-name">Rainbow Chip</p>
-                <span class="rarity epic">Epic</span>
-            </div>
-            <div class="cookie-card">
-                <div class="cookie-preview cookie-5"></div>
-                <p class="cookie-name">Cosmic Cookie</p>
-                <span class="rarity legendary">Legendary</span>
-            </div>
+    <section id="roadmap" class="section roadmap-section">
+        <div class="section-header">
+            <h2>🗺️ Our Journey</h2>
+            <p class="section-subtitle">The sweet road ahead for CookieHeaven</p>
         </div>
-    </section>
-
-    <section id="roadmap" class="section">
-        <h2>Roadmap</h2>
-        <div class="roadmap-timeline">
+        
+        <div class="roadmap">
             <div class="roadmap-item">
-                <div class="phase">Phase 1</div>
-                <h3>Launch</h3>
-                <ul>
-                    <li>Website launch</li>
-                    <li>Social media setup</li>
-                    <li>Community growth</li>
-                </ul>
+                <div class="roadmap-marker">1</div>
+                <div class="roadmap-content">
+                    <h3>Phase 1: The Beginning</h3>
+                    <ul>
+                        <li>🌐 Website launch</li>
+                        <li>📱 Social media setup</li>
+                        <li>💬 Community building</li>
+                        <li>👥 Early supporter rewards</li>
+                    </ul>
+                </div>
             </div>
             <div class="roadmap-item">
-                <div class="phase">Phase 2</div>
-                <h3>Mint</h3>
-                <ul>
-                    <li>NFT Drop</li>
-                    <li>All 1000 cookies minted</li>
-                    <li>Holder rewards</li>
-                </ul>
+                <div class="roadmap-marker">2</div>
+                <div class="roadmap-content">
+                    <h3>Phase 2: The Drop</h3>
+                    <ul>
+                        <li>🎉 Free mint launch</li>
+                        <li>🍪 All 1,000 cookies find homes</li>
+                        <li>🎁 Holder exclusive perks</li>
+                        <li>📦 Care package for OG holders</li>
+                    </ul>
+                </div>
             </div>
             <div class="roadmap-item">
-                <div class="phase">Phase 3</div>
-                <h3>Expand</h3>
-                <ul>
-                    <li>Cookie merch store</li>
-                    <li>Secondary marketplace</li>
-                    <li>Future drops</li>
-                </ul>
+                <div class="roadmap-marker">3</div>
+                <div class="roadmap-content">
+                    <h3>Phase 3: Growing</h3>
+                    <ul>
+                        <li>🛍️ Cookie merch store</li>
+                        <li>🏪 Secondary marketplace</li>
+                        <li>🎮 Future cookie drops</li>
+                        <li>🌟 CommunityDAO</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="mint" class="section mint-section">
-        <h2>Mint Your Cookie</h2>
-        <p class="section-subtitle">Coming Soon - Free Mint on Polygon</p>
-        <div class="mint-box">
-            <div class="mint-cookie"></div>
-            <p>Mint date: TBA</p>
-            <p class="mint-price">Cost: 0 MATIC + Gas</p>
-            <button class="btn btn-primary" disabled>Connect Wallet to Mint</button>
+        <div class="mint-container">
+            <div class="mint-glow"></div>
+            <h2>🍪 Mint Your Cookie</h2>
+            <p class="mint-subtitle">Free mint on Polygon network</p>
+            
+            <div class="mint-box">
+                <div class="mint-cookie-display">
+                    <div class="mint-cookie-animated">
+                        <div class="mc-body"></div>
+                        <div class="mc-chips"></div>
+                        <div class="mc-sparkle s1">✨</div>
+                        <div class="mc-sparkle s2">💫</div>
+                        <div class="mc-sparkle s3">⭐</div>
+                    </div>
+                </div>
+                <div class="mint-details">
+                    <p class="mint-date">📅 Launch Date: Coming Soon!</p>
+                    <p class="mint-price">💰 Cost: 0 MATIC + Gas Fee</p>
+                    <p class="mint-supply">📦 Supply: 1,000 unique cookies</p>
+                </div>
+                <button class="btn btn-mint" id="connectWallet">
+                    <span>🔗</span> Connect Wallet to Get Notified
+                </button>
+                <div class="notify-options">
+                    <p>Or join our community to get updates:</p>
+                    <div class="social-btns">
+                        <a href="#" class="social-btn twitter">🐦 Twitter</a>
+                        <a href="#" class="social-btn discord">💬 Discord</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Waitlist Modal -->
+    <div class="modal" id="waitlistModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">×</button>
+            <div class="modal-emoji">🍪</div>
+            <h3>You're on the list! 🎉</h3>
+            <p>We'll notify you when minting goes live.</p>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-content">
-            <p>🍪 CookieHeaven NFT Collection</p>
-            <div class="social-links">
-                <a href="#" target="_blank">Twitter</a>
-                <a href="#" target="_blank">Discord</a>
-                <a href="#" target="_blank">OpenSea</a>
+            <div class="footer-logo">
+                <span>🍪</span> CookieHeaven
             </div>
-            <p class="copyright">© 2026 CookieHeaven. All rights reserved.</p>
+            <p class="footer-tagline">Spreading sweetness, one pixel at a time 💕</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#collection">Collection</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#mint">Mint</a>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-icon" title="Twitter">🐦</a>
+                <a href="#" class="social-icon" title="Discord">💬</a>
+                <a href="#" class="social-icon" title="OpenSea">🌊</a>
+            </div>
+            <p class="copyright">© 2026 CookieHeaven. Crafted with 💖 by Melissa</p>
         </div>
     </footer>
 
