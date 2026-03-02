@@ -1,78 +1,16 @@
-# CookieHeaven 🍪
+# React + Vite
 
-A deliciously cute NFT collection featuring 1,000 unique pixel art cookies on the Polygon blockchain.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-![CookieHeaven](https://img.shields.io/badge/Blockchain-Polygon-purple)
-![Status-In%20Development-yellow)
-![License-MIT-green)
+Currently, two official plugins are available:
 
-## About
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-CookieHeaven is a fun NFT project created by Melissa with love for cookie lovers everywhere! Each cookie is a unique pixel art creation with different colors, toppings, and rarities.
+## React Compiler
 
-### What's Inside?
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- 🍫 1,000 unique pixel cookies
-- 🌈 Multiple rarity levels (Common → Legendary)
-- ⛽ Low gas fees on Polygon
-- 🎁 Free mint (just pay gas)
+## Expanding the ESLint configuration
 
-## Quick Links
-
-- 🌐 Website: [cookieheaven.art](https://cookieheaven.art) (coming soon)
-- 🐦 Twitter: [@cookieheavennft](https://twitter.com)
-- 💬 Discord: [Join our community](https://discord.com)
-
-## Development
-
-This website is built with vanilla HTML, CSS, and JavaScript.
-
-### Running Locally
-
-```bash
-# Clone the repo
-git clone https://github.com/mycookieheaven/cookieheaven.git
-
-# Open in browser
-cd cookieheaven
-open index.html
-```
-
-Or use a local server:
-
-```bash
-npx serve .
-```
-
-## Tech Stack
-
-- HTML5
-- CSS3 (custom properties, animations)
-- JavaScript (ES6+)
-- [Thirdweb](https://thirdweb.com) - For NFT drop smart contracts
-- [Polygon](https://polygon.technology) - Blockchain
-
-## Roadmap
-
-### Phase 1: Launch
-- Website launch ✅
-- Social media setup
-- Community building
-
-### Phase 2: Mint
-- Free NFT drop
-- All 1,000 cookies minted
-- Holder rewards
-
-### Phase 3: Expand
-- Merch store
-- Secondary marketplace
-- Future cookie drops
-
-## License
-
-MIT
-
----
-
-Made with 💖 by Melissa 🧡
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
